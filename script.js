@@ -13,12 +13,11 @@ updateScoreElem();
   }*/
 
 function scoreReset() {
-    score.wins = 0;
+  score.wins = 0;
   score.losses = 0;
   score.ties = 0;
   localStorage.removeItem('score');
   updateScoreElem();
-  
 }
 
 let isAutoPlaying = false;
@@ -29,8 +28,8 @@ function autoPlay() {
     intervalId = setInterval(function(){
       const playerMove = pickCompMove();
       playGame(playerMove);
-  }, 1000);
-  isAutoPlaying = true;
+    }, 1000);
+    isAutoPlaying = true;
 
   } else {
     clearInterval(intervalId);
@@ -86,11 +85,11 @@ function playGame(playerMove) {
   document.querySelector('.js-result').innerHTML = result;
 
   document.querySelector('.js-moves').innerHTML = (`You chose <img src="images/${playerMove}-emoji.png" class="move-icon"> the Computer chose <img src="images/${computerMove}-emoji.png" class="move-icon">`)
-  
 }
 
-function updateScoreElem () {
-  document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`};
+function updateScoreElem() {
+  document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`
+};
 
 function pickCompMove() {
   const randomNumber = Math.random();
@@ -102,7 +101,7 @@ function pickCompMove() {
   } else if (randomNumber >= 1/3 && randomNumber < 2/3)
   {
   computerMove = 'paper';    
-  } else{
+  } else {
   computerMove = 'scissors';    
   }
   return computerMove;
