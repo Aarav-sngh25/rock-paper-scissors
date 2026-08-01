@@ -16,25 +16,52 @@ function scoreReset() {
   score.wins = 0;
   score.losses = 0;
   score.ties = 0;
+
   localStorage.removeItem('score');
+  
   updateScoreElem();
 }
 
+let userSpeed;
 let isAutoPlaying = false;
-let intervalId; 
+let intervalId;
 
 function autoPlay() {
+  if(isAutoPlaying === true) {
+    document.querySelector('.js-enter-speed').innerHTML = '';
+    clearInterval(intervalId);
+    isAutoPlaying = false;
+    return;
+  }
+
+  let inputSpeedElem = document.querySelector('.js-enter-speed');
+
+  if(!document.querySelector('.js-speed-value')) {
+    inputSpeedElem.innerHTML = `<input class="js-speed-value" placeholder="Enter Speed">`;
+
+    return;
+  }
+  
+  userSpeed = Number(document.querySelector('.js-speed-value').value);
+
+  if(!userSpeed) {
+    return alert('Please enter desired Auto-play Speed');
+  }
+
+  if(userSpeed === 0) {
+    return alert("Speed cant't be zero")
+  }
   if(!isAutoPlaying){
+    let userSpeedMili = userSpeed * 1000;
     intervalId = setInterval(function(){
       const playerMove = pickCompMove();
       playGame(playerMove);
-    }, 1000);
+    }, userSpeedMili);
     isAutoPlaying = true;
-
-  } else {
-    clearInterval(intervalId);
-    isAutoPlaying = false;
+    document.querySelector('.js-enter-speed').innerHTML = '';
   }
+
+  document.querySelector('.js-auto-play-speed').textContent = `Auto play speed: ${userSpeed}`
 }
 
 function playGame(playerMove) {

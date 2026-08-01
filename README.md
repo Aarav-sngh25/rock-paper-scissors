@@ -30,4 +30,3 @@ This project allows the user to play Rock Paper Scissors against a computer-gene
 ## Purpose
 
 This project was created to practice JavaScript fundamentals, including functions, DOM manipulation, event handling, and storing data with localStorage.
-

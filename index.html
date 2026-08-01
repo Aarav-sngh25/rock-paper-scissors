@@ -2,10 +2,9 @@
 <html>
   <head>
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-      <link rel="stylesheet" href="style.css">
-
     <p class="title">Rock Paper Scissors
     </p>
 
@@ -36,7 +35,7 @@
 
     <p class="js-score score"> </p>
 
-    <p>
+    <div>
     <button class="reset-score-button" onclick="
       scoreReset()
     ">Reset Score</button>
@@ -44,7 +43,11 @@
     <button class="auto-play-button" onclick="
       autoPlay();
     ">Auto Play</button>
-    </p>
+
+    <span class="js-enter-speed"></span>
+
+    <p class="js-auto-play-speed"></p>
+    </div>
 
     <script src="script.js"></script>
   </body>
