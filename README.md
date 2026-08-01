@@ -1,6 +1,6 @@
 # Rock Paper Scissors Game
 
-A simple Rock Paper Scissors game built using HTML, CSS, and JavaScript.
+A browser-based Rock Paper Scissors game built using HTML, CSS, and JavaScript.
 
 ## Overview
 
@@ -14,11 +14,14 @@ This project allows the user to play Rock Paper Scissors against a computer-gene
 - Tracks wins, losses, and ties
 - Saves score data using localStorage
 - Reset score functionality
+- Auto Play mode
+- Custom Auto Play speed selection
+- Dynamic input handling for user-defined autoplay speed
 
 ## Technologies Used
 
-- HTML
-- CSS
+- HTML5
+- CSS3
 - JavaScript
 
 ## How to Run
@@ -29,4 +32,11 @@ This project allows the user to play Rock Paper Scissors against a computer-gene
 
 ## Purpose
 
-This project was created to practice JavaScript fundamentals, including functions, DOM manipulation, event handling, and storing data with localStorage.
+This project was created to practice JavaScript fundamentals, including:
+- Functions
+- DOM manipulation
+- Event handling
+- User input handling
+- setInterval for repeated actions
+- Managing program state
+- Storing data with localStorage
