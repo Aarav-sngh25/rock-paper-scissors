@@ -85,6 +85,26 @@ document.querySelector('.js-paper-button')
 document.querySelector('.js-scissors-button')
   .addEventListener('click', () => {playGame('scissors')});
 
+document.body
+  .addEventListener('keydown', (event) => {
+    const key = event.key.toLowerCase();
+
+      if(key === 'r') {
+        playGame('rock');
+      }
+
+      if(key === 'p') {
+        playGame('paper');
+      }
+
+      if(key === 's') {
+        playGame('scissors');
+      }
+
+      if(key === 'delete') {
+       scoreReset();
+      }
+    })
 
 function playGame(playerMove) {
   const computerMove= pickCompMove();    

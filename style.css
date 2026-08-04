@@ -43,3 +43,15 @@ body {
   border-radius: 4px;
   margin-left: 5px;
 }
+
+.js-rock-button {
+  background-color: #54575c;
+}
+
+.js-paper-button {
+  background-color: #a9bedf;
+}
+
+.js-scissors-button {
+  background-color: #d18080;
+}
