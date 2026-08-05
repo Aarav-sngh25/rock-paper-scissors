@@ -20,9 +20,7 @@ function scoreReset() {
   localStorage.removeItem('score');
 
   if(isAutoPlaying === true) {
-    document.querySelector('.js-enter-speed').innerHTML = '';
-    clearInterval(intervalId);
-    isAutoPlaying = false;
+    autoPlayStop();
   }
 
   document.querySelector('.js-auto-play-speed').textContent = '';
@@ -39,10 +37,9 @@ let isAutoPlaying = false;
 let intervalId;
 
 function autoPlay() {
+  
   if(isAutoPlaying === true) {
-    document.querySelector('.js-enter-speed').innerHTML = '';
-    clearInterval(intervalId);
-    isAutoPlaying = false;
+    autoPlayStop()
     return;
   }
 
@@ -64,6 +61,7 @@ function autoPlay() {
     return alert("Speed cant't be zero")
   }
   if(!isAutoPlaying){
+    document.querySelector('.js-auto-play-button').innerHTML = 'Stop Playing';
     let userSpeedMili = userSpeed * 1000;
     intervalId = setInterval(() => {
       const playerMove = pickCompMove();
@@ -74,7 +72,14 @@ function autoPlay() {
   }
 
   document.querySelector('.js-auto-play-speed').textContent = `Auto play speed: ${userSpeed}`
-}
+};
+
+function autoPlayStop() {
+  document.querySelector('.js-enter-speed').innerHTML = '';
+  clearInterval(intervalId);
+  isAutoPlaying = false;
+  document.querySelector('.js-auto-play-button').innerHTML = 'Auto Play';
+};
 
 document.querySelector('.js-rock-button')
   .addEventListener('click', () => {playGame('rock')});
@@ -84,6 +89,12 @@ document.querySelector('.js-paper-button')
 
 document.querySelector('.js-scissors-button')
   .addEventListener('click', () => {playGame('scissors')});
+
+document.querySelector('.js-auto-play-button')
+  .addEventListener('click', () => {autoPlay()});
+
+document.querySelector('.js-reset-score-button')
+  .addEventListener('click', () => {scoreReset()});
 
 document.body
   .addEventListener('keydown', (event) => {
@@ -108,7 +119,7 @@ document.body
 
 function playGame(playerMove) {
   const computerMove= pickCompMove();    
-
+  console.log(localStorage.getItem('score'));
   let result = '';
 
   if (playerMove === 'scissors') {
