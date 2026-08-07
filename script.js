@@ -13,23 +13,40 @@ updateScoreElem();
   }*/
 
 function scoreReset() {
-  score.wins = 0;
-  score.losses = 0;
-  score.ties = 0;
+  document.querySelector('.js-reset-confirm')
+    .innerHTML = `<button class="reset-yes-confirm">Yes</button>
+    <button class="reset-no-confirm">No</button>`
 
-  localStorage.removeItem('score');
-
-  if(isAutoPlaying === true) {
-    autoPlayStop();
-  }
-
-  document.querySelector('.js-auto-play-speed').textContent = '';
-
-  document.querySelector('.js-moves').innerHTML = '';
-
-  document.querySelector('.js-result').innerHTML = '';
   
-  updateScoreElem();
+  document.querySelector('.reset-yes-confirm')
+    .addEventListener('click', () => {
+      score.wins = 0;
+      score.losses = 0;
+      score.ties = 0;
+
+      localStorage.removeItem('score');
+
+      if(isAutoPlaying === true) {
+        autoPlayStop();
+      }
+
+      document.querySelector('.js-auto-play-speed').textContent = '';
+
+      document.querySelector('.js-moves').innerHTML = '';
+
+      document.querySelector('.js-result').innerHTML = '';
+
+      document.querySelector('.js-reset-confirm').innerHTML = '';
+      
+      updateScoreElem();
+      
+      }
+    )
+
+  document.querySelector('.reset-no-confirm')
+    .addEventListener('click', () => {
+      document.querySelector('.js-reset-confirm').innerHTML = '';
+    })
 }
 
 let userSpeed;
@@ -110,6 +127,10 @@ document.body
 
       if(key === 's') {
         playGame('scissors');
+      }
+
+      if(key === 'a') {
+        autoPlay();
       }
 
       if(key === 'delete') {
