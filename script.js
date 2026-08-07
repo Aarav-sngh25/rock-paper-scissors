@@ -98,6 +98,7 @@ function autoPlayStop() {
   document.querySelector('.js-auto-play-button').innerHTML = 'Auto Play';
 };
 
+//Click support
 document.querySelector('.js-rock-button')
   .addEventListener('click', () => {playGame('rock')});
 
@@ -113,34 +114,35 @@ document.querySelector('.js-auto-play-button')
 document.querySelector('.js-reset-score-button')
   .addEventListener('click', () => {scoreReset()});
 
+//Keyboard Support
 document.body
   .addEventListener('keydown', (event) => {
     const key = event.key.toLowerCase();
 
-      if(key === 'r') {
-        playGame('rock');
-      }
+    if(key === 'r') {
+      playGame('rock');
+    }
 
-      if(key === 'p') {
-        playGame('paper');
-      }
+    if(key === 'p') {
+      playGame('paper');
+    }
 
-      if(key === 's') {
-        playGame('scissors');
-      }
+    if(key === 's') {
+      playGame('scissors');
+    }
 
-      if(key === 'a') {
-        autoPlay();
-      }
+    if(key === 'a') {
+      autoPlay();
+    }
 
-      if(key === 'delete') {
-       scoreReset();
-      }
-    })
+    if(key === 'delete') {
+      scoreReset();
+    }
+  })
 
 function playGame(playerMove) {
   const computerMove= pickCompMove();    
-  console.log(localStorage.getItem('score'));
+  
   let result = '';
 
   if (playerMove === 'scissors') {
