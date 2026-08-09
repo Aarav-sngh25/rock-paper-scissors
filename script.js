@@ -4,14 +4,6 @@ let score = JSON.parse(localStorage.getItem('score')) || { wins: 0,
         
 updateScoreElem();
 
-  /*if(!score) {
-    score = {
-      wins: 0,
-      losses: 0,
-      ties: 0
-    };
-  }*/
-
 function scoreReset() {
   document.querySelector('.js-reset-confirm')
     .innerHTML = `<button class="reset-yes-confirm">Yes</button>
@@ -142,42 +134,61 @@ document.body
 
 function playGame(playerMove) {
   const computerMove= pickCompMove();    
-  
+
+  const gameResult = {
+    win: 'You win.',
+    loss: 'You lose.',
+    tied: 'Tie.'};
+
+  const computerMoveCheck = {
+    rock: computerMove === 'rock',
+    paper: computerMove === 'paper',
+    scissors: computerMove === 'scissors'
+  };
+
   let result = '';
 
   if (playerMove === 'scissors') {
-    if (computerMove === 'rock'){
-    result = 'You lose.';
-    } else if (computerMove === 'paper'){
-    result = 'You win.';
-    } else if (computerMove === 'scissors'){
-    result = 'Tie.'
+    if (compMoveCheck.rock){
+    result = gameResult.loss;
+
+    } else if (compMoveCheck.paper){
+    result = gameResult.win;
+
+    } else if (compMoveCheck.scissors){
+    result = gameResult.tied;
     }
 
   } else if (playerMove === 'paper') {
-      if (computerMove === 'rock'){
-    result = 'You win.';
-    } else if (computerMove === 'paper'){
-      result = 'Tie.';
-    } else if (computerMove === 'scissors'){
-      result = 'You lose.'
+      if (compMoveCheck.rock){
+    result = gameResult.win;
+
+    } else if (compMoveCheck.paper){
+      result = gameResult.tied;
+
+    } else if (compMoveCheck.scissors){
+      result = gameResult.loss;
     }
 
   } else if (playerMove === 'rock') {
-      if (computerMove === 'rock'){
-    result = 'Tie.';
-    } else if (computerMove === 'paper'){
-      result = 'You lose.';
-    } else if (computerMove === 'scissors'){
-      result = 'You win.'
+      if (compMoveCheck.rock){
+    result = gameResult.tied;
+
+    } else if (compMoveCheck.paper){
+      result = gameResult.loss;
+      
+    } else if (compMoveCheck.scissors){
+      result = gameResult.win
     }
   }
   
-  if (result === 'You win.') {
+  if (result === gameResult.win) {
     score.wins ++ ;
-  } else if (result === 'You lose.') {
+
+  } else if (result === gameResult.loss) {
     score.losses ++ ;
-  } else if (result === 'Tie.') {
+
+  } else if (result === gameResult.tied) {
     score.ties ++ ;
   }
 
