@@ -149,35 +149,35 @@ function playGame(playerMove) {
   let result = '';
 
   if (playerMove === 'scissors') {
-    if (compMoveCheck.rock){
+    if (computerMoveCheck.rock){
     result = gameResult.loss;
 
-    } else if (compMoveCheck.paper){
+    } else if (computerMoveCheck.paper){
     result = gameResult.win;
 
-    } else if (compMoveCheck.scissors){
+    } else if (computerMoveCheck.scissors){
     result = gameResult.tied;
     }
 
   } else if (playerMove === 'paper') {
-      if (compMoveCheck.rock){
+      if (computerMoveCheck.rock){
     result = gameResult.win;
 
-    } else if (compMoveCheck.paper){
+    } else if (computerMoveCheck.paper){
       result = gameResult.tied;
 
-    } else if (compMoveCheck.scissors){
+    } else if (computerMoveCheck.scissors){
       result = gameResult.loss;
     }
 
   } else if (playerMove === 'rock') {
-      if (compMoveCheck.rock){
+      if (computerMoveCheck.rock){
     result = gameResult.tied;
 
-    } else if (compMoveCheck.paper){
+    } else if (computerMoveCheck.paper){
       result = gameResult.loss;
       
-    } else if (compMoveCheck.scissors){
+    } else if (computerMoveCheck.scissors){
       result = gameResult.win
     }
   }
