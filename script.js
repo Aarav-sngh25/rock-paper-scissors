@@ -1,6 +1,8 @@
+import { gameHistory } from "./history.js";
+
 let score = JSON.parse(localStorage.getItem('score')) || { wins: 0,
         losses: 0,
-        ties: 0}
+        ties: 0};
         
 updateScoreElem();
 
@@ -196,6 +198,14 @@ function playGame(playerMove) {
 
   localStorage.setItem('score', JSON.stringify(score));
 
+  gameHistory.push({
+    playerMove,
+    computerMove,
+    result
+  });
+
+  localStorage.setItem('gameHistory', JSON.stringify(gameHistory));
+
   document.querySelector('.js-result').innerHTML = result;
 
   document.querySelector('.js-moves').innerHTML = (`You chose <img src="images/${playerMove}-emoji.png" class="move-icon"> the Computer chose <img src="images/${computerMove}-emoji.png" class="move-icon">`)
@@ -219,4 +229,4 @@ function pickCompMove() {
   computerMove = 'scissors';    
   }
   return computerMove;
-}
+};

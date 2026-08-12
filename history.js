@@ -1,0 +1,1 @@
+export const gameHistory = JSON.parse(localStorage.getItem('gameHistory')) || [];
