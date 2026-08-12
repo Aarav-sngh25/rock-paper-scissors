@@ -80,7 +80,7 @@ function autoPlay() {
     }, userSpeedMili);
     isAutoPlaying = true;
     document.querySelector('.js-enter-speed').innerHTML = '';
-  }
+  };
 
   document.querySelector('.js-auto-play-speed').textContent = `Auto play speed: ${userSpeed}`
 };
@@ -195,6 +195,7 @@ function playGame(playerMove) {
   }
 
   updateScoreElem();
+  updateGameHistoryElem();
 
   localStorage.setItem('score', JSON.stringify(score));
 
@@ -229,4 +230,12 @@ function pickCompMove() {
   computerMove = 'scissors';    
   }
   return computerMove;
+};
+
+function updateGameHistoryElem() {
+  const latestGame = gameHistory[gameHistory.length - 1];
+
+  document.querySelector('.js-game-history').innerHTML = `<div>Score History:-</div><p>Player Move: ${latestGame.playerMove}</p>
+    <p>Computer Move: ${latestGame.computerMove}</p>
+    <p>Result: ${latestGame.result}</p>`;
 };
