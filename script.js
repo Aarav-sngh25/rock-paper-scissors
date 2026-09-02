@@ -103,9 +103,9 @@ document.querySelector(".js-scissors-button").addEventListener("click", () => {
   playGame("scissors");
 });
 
-document.querySelector(".js-auto-play-button").addEventListener("click", () => {
-  autoPlay();
-});
+document
+  .querySelector(".js-auto-play-button")
+  .addEventListener("click", autoPlay);
 
 document
   .querySelector(".js-reset-score-button")
@@ -232,9 +232,27 @@ function updateGameHistoryElem() {
   let historyArray = "";
 
   gameHistory.forEach((game) => {
-    historyArray += `<div>Score History:-</div><p>Player Move: ${game.playerMove}</p>
+    historyArray += `<p>Player Move: ${game.playerMove}</p>
       <p>Computer Move: ${game.computerMove}</p>
-      <p>Result: ${game.result}</p>`;
+      <p>Result: ${game.result}</p>
+      <p>-------------------------------------</p>`;
   });
-  document.querySelector(".js-game-history").innerHTML = historyArray;
+
+  const historyElem = document.querySelector(".js-game-history");
+
+  if (historyArray) {
+    historyElem.innerHTML = `<div>Score History:-</div>${historyArray} <button class="clear-history-button js-clear-history-button">Clear History</button>`;
+
+    document
+      .querySelector(".js-clear-history-button")
+      .addEventListener("click", clearGameHistory);
+  } else {
+    historyElem.innerHTML = "";
+  }
+}
+
+function clearGameHistory() {
+  gameHistory.length = 0;
+  localStorage.removeItem("gameHistory");
+  updateGameHistoryElem();
 }

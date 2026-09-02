@@ -34,7 +34,8 @@ body {
 }
 
 .reset-score-button,
-.auto-play-button {
+.auto-play-button,
+.clear-history-button {
   background-color: honeydew;
   border: none;
   font-size: 15px;
